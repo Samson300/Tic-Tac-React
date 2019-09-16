@@ -1,5 +1,5 @@
-import React from 'react';
-import { createSecureContext } from 'tls';
+import React, { Component } from 'react';
+import Board from './Board'
 
 export default class Game extends Component {
     constructor(props){
@@ -19,7 +19,7 @@ export default class Game extends Component {
             <div className="game">
                 <div className="game-board">
                     <Board 
-                    onClick={(i)=>this.onClick(i)}
+                    onClick={(i)=>this.handleClick(i)}
                     squares={current.squares}
                     />
                 </div> 
