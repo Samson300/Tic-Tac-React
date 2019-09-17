@@ -34,6 +34,24 @@ export default class Game extends Component {
     render() {
         const history = this.state.history;
         const current = history[this.state.stepNumber]
+        const winner = calculateWinner(current.squares);
+        const moves = history.map((step, move) => {
+            const desc = move? "Go To #" + move : "Start The Game"
+            return (
+                <li key={move}>
+                    <button onClick={() => {this.jumpTo(move)}}>
+                        {desc}
+                    </button>
+                </li>
+            )
+        });
+        let status;
+        if(winner){
+            status="Winner is" + winner;
+        } else {
+            status = "Next Player is " + (this.state.xIsNext ? "X" : "O");
+        }
+
         return (
             <div className="game">
                 <div className="game-board">
@@ -41,7 +59,11 @@ export default class Game extends Component {
                     onClick={(i)=>this.handleClick(i)}
                     squares={current.squares}
                     />
-                </div> 
+                </div>
+                <div className="game-info">
+                    <div>{status}</div>
+                    <div>{moves}</div>
+                </div>
             </div>
         )
     }
