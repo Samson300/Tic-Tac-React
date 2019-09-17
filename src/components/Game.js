@@ -17,12 +17,12 @@ export default class Game extends Component {
         const history = this.state.history.slice(0,this.state.stepNumber+1);
         const current = history[history.length-1];
         const squares = current.squares.slice();
-        squares[i] = this.state.xIsNext ? "X" : "O";
+        squares[i] = this.state.xIsNext ? 'X' : 'O';
         this.setState({
             history: history.concat({
                 squares: squares
             }),
-            xIsNext: this.state.xIsNext,
+            xIsNext: !this.state.xIsNext,
             stepNumber: history.length
         })
     }
